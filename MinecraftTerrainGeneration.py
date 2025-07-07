@@ -20,7 +20,7 @@ import subprocess
 
 GITHUB_RELEASES = "https://api.github.com/repos/GidesPC/MinecraftRandomBlockGenerator/releases"
 SETTINGS_FILE = "minecraft_terrain_generator_config.json"
-current_version = "1.1(2025.24.04)"
+current_version = "1.2(2025.07.07)"
 game_versions = {
 	"1.12.2":(1, 12, 2),
 	"1.13":(1, 13, 0),
@@ -35,6 +35,7 @@ game_versions = {
 	"1.21-1.21.3":(1, 21,0),
 	"1.21.4":(1, 21, 4),
 	"1.21.5":(1, 21,5),
+	"1.21.6-1.21.7":(1, 21,6),
 	
 }
 
@@ -42,7 +43,7 @@ changelog_1_1_v = """
 -Добавлен кнопка списка изменений
 -Добавлен выбор версий (с 1.12.2 по 1.21.5 (версии ниже не поддерживает сама библиотека))
 -Добавлен переключатель тем
--Адаптировано под маленькие экраны (но ниже 1024х768)
+-Адаптировано под маленькие экраны (не ниже 1024х768)
 -Добавлена возможность обновлений
 -Добавлен минимальный конфиг, а именно:
 1)Возможность включать/отключать создание лог файлов после генерации
@@ -51,8 +52,14 @@ changelog_1_1_v = """
 4)Включение и отключение автообновлений
 """
 
+changelog_1_2_v = """
+-Добавлена поддержка версий 1.21.6-1.21.7
+"""
+
 changelogs = {
-	"Версия 1.1(2025.24.04)":changelog_1_1_v
+	"Версия 1.1(2025.24.04)":changelog_1_1_v,
+	"Версия 1.2(2025.07.07)":changelog_1_2_v,
+	
 	}
 
 def setup_theme(theme=None):
@@ -339,7 +346,7 @@ class MainWindow(QMainWindow):
 		self.path_button.setMaximumWidth(self.path_button.sizeHint().width())
 		self.path_button.clicked.connect(self.select_path)
 		self.version = QComboBox()
-		self.versions = ["1.21.5","1.21.4","1.21-1.21.3","1.20.x","1.19.x","1.18.x","1.17.x","1.16.x","1.15.x","1.14.x","1.13.1-1.13.2","1.13","1.12.2"]
+		self.versions = ["1.21.6-1.21.7","1.21.5","1.21.4","1.21-1.21.3","1.20.x","1.19.x","1.18.x","1.17.x","1.16.x","1.15.x","1.14.x","1.13.1-1.13.2","1.13","1.12.2"]
 		self.version.addItems(self.versions)
 		self.version.currentTextChanged.connect(self.on_version_changed)
 		self.if_create_log_file = QCheckBox("создавать лог файл")
@@ -488,7 +495,7 @@ class MainWindow(QMainWindow):
 		layout_6.addWidget(QLabel('<span style="color: red;">'
 						  'Не используйте свои основные миры, в случае неудачи вы можете их частично испортить, или вовсе сломать. '
 						  'Рекомендуется использовать плоские миры.</span>'))
-		layout_7.addWidget(QLabel("Версия 1.1, разработано GidesPC"))
+		layout_7.addWidget(QLabel("Версия 1.2, разработано GidesPC"))
 		layout_7.addWidget(self.changelog_button)
 		layout_6.addWidget(self.github_button)
 
