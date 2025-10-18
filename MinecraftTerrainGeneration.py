@@ -20,7 +20,7 @@ import subprocess
 
 GITHUB_RELEASES = "https://api.github.com/repos/GidesPC/MinecraftRandomBlockGenerator/releases"
 SETTINGS_FILE = "minecraft_terrain_generator_config.json"
-current_version = "1.2(2025.07.07)"
+current_version = "1.3(2025.16.10)"
 game_versions = {
 	"1.12.2":(1, 12, 2),
 	"1.13":(1, 13, 0),
@@ -35,8 +35,8 @@ game_versions = {
 	"1.21-1.21.3":(1, 21,0),
 	"1.21.4":(1, 21, 4),
 	"1.21.5":(1, 21,5),
-	"1.21.6-1.21.7":(1, 21,6),
-	
+	"1.21.6-1.21.8":(1, 21,6),
+	"1.21.9-1.21.10":(1, 21,9),	
 }
 
 changelog_1_1_v = """
@@ -53,13 +53,17 @@ changelog_1_1_v = """
 """
 
 changelog_1_2_v = """
--Добавлена поддержка версий 1.21.6-1.21.7
+-Добавлена поддержка версий 1.21.6-1.21.8
+"""
+
+changelog_1_3_v = """
+-Добавлена поддержка версий 1.21.9-1.21.10
 """
 
 changelogs = {
 	"Версия 1.1(2025.24.04)":changelog_1_1_v,
 	"Версия 1.2(2025.07.07)":changelog_1_2_v,
-	
+	"Версия 1.3(2025.16.10)":changelog_1_3_v
 	}
 
 def setup_theme(theme=None):
@@ -346,7 +350,7 @@ class MainWindow(QMainWindow):
 		self.path_button.setMaximumWidth(self.path_button.sizeHint().width())
 		self.path_button.clicked.connect(self.select_path)
 		self.version = QComboBox()
-		self.versions = ["1.21.6-1.21.7","1.21.5","1.21.4","1.21-1.21.3","1.20.x","1.19.x","1.18.x","1.17.x","1.16.x","1.15.x","1.14.x","1.13.1-1.13.2","1.13","1.12.2"]
+		self.versions = ["1.21.9-1.21.10","1.21.6-1.21.8","1.21.5","1.21.4","1.21-1.21.3","1.20.x","1.19.x","1.18.x","1.17.x","1.16.x","1.15.x","1.14.x","1.13.1-1.13.2","1.13","1.12.2"]
 		self.version.addItems(self.versions)
 		self.version.currentTextChanged.connect(self.on_version_changed)
 		self.if_create_log_file = QCheckBox("создавать лог файл")
